@@ -10,10 +10,42 @@ label,input{display:block;}
 </head>
 <body>
 	<p>Input radius value and get the volume of a sphere.</p>
-	<form action="" method="post" id="MyForm">
-	<label for="radius">Radius</label><input type="text" name="radius" id="radius" required>
-	<label for="volume">Volume</label><input type="text" name="volume" id="volume">
-	<input type="submit" value="Calculate" id="submit">    </form>
-	<script type="text/javascript" src="./script.js"></script>
+<form action="" method="post" id="MyForm">
+	<label for="radius">Radius</label>
+    <input type="text" name="radius" id="radius" required>
+
+	<label for="volume">Volume</label>
+    <input type="text" name="volume" id="volume">
+
+	<input type="submit" value="Calculate" id="submit">   
+ </form>
+
+        <script>
+            //  targeting the elements 
+          const form = document.getElementById("MyForm");
+          const radius = document.getElementById("radius");
+          const volume = document.getElementById("volume");
+
+        //   adding event listener 
+          form.addEventListener("submit",volum_sphere)
+        
+        //   calculating the volume 
+          function volum_sphere(e){
+            e.preventDefault();
+            
+            //  get radius 
+            const radiusValue = parseFloat(radius.value);
+
+            if(radiusValue < 0 || isNaN(radiusValue)){
+                volume.value = "NaN";
+            }else{
+                // volume 
+                const volumeFormula = (4/3) * Math.PI * (radiusValue*radiusValue*radiusValue);
+                volume.value = volumeFormula.toFixed(4);
+            }
+
+
+          }
+        </script>
 </body>
 </html>
